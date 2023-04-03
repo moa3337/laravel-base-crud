@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Album;
+use Faker\Generator as Faker;
 
 class AlbumSeeder extends Seeder
 {
@@ -14,17 +15,19 @@ class AlbumSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $album = new Album;
-        $album->name = 'Smooth Criminal';
-        $album->album_name = 'Bad';
-        $album->author = 'Michael Jackson';
-        $album->editor = 'Recording Studios';
-        $album->lenght = 4;
-        $album->poster = 'image';
-        $album->type = 'pop';
-        $album->description = 'Lorem';
-        $album->save();
+        for ($i = 0; $i < 11; $i++) {
+            $album = new Album;
+            $album->name = $faker->words();
+            $album->album_name = $faker->title();
+            $album->author = $faker->name();
+            $album->editor = $faker->company();
+            $album->lenght = $faker->randomFloat(1, 3, 6);
+            $album->poster = 'https://picsum.photos/300/200';
+            $album->type = $faker->randomElement(['pop', 'rock', 'jazz', 'rap']);
+            $album->description = $faker->sentences();
+            $album->save();
+        }
     }
 }
