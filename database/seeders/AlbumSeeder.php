@@ -19,14 +19,14 @@ class AlbumSeeder extends Seeder
     {
         for ($i = 0; $i < 11; $i++) {
             $album = new Album;
-            $album->name = $faker->words();
-            $album->album_name = $faker->title();
-            $album->author = $faker->name();
-            $album->editor = $faker->company();
+            $album->name = $faker->unique()->word(20);
+            $album->album_name = $faker->word();
+            $album->author = $faker->name(20);
+            $album->editor = $faker->unique()->company(20);
             $album->lenght = $faker->randomFloat(1, 3, 6);
             $album->poster = 'https://picsum.photos/300/200';
             $album->type = $faker->randomElement(['pop', 'rock', 'jazz', 'rap']);
-            $album->description = $faker->sentences();
+            $album->description = $faker->sentence();
             $album->save();
         }
     }
