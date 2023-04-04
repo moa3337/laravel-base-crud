@@ -9,8 +9,10 @@ class Album extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["name", "album_name", "author", "editor", "lenght", "poster", "type", "description"];
+
     public function getAbstract($chars = 30)
     {
-        return substr($this->description, 0, $char);
+        return substr($this->description, 0, $chars);
     }
 }

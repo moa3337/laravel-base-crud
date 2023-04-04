@@ -37,7 +37,21 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+
+        $album = new Album;
+        //$album->fill($data);
+        $album->name = $data["name"];
+        $album->album_name = $data["album_name"];
+        $album->author = $data["author"];
+        $album->editor = $data["editor"];
+        $album->lenght = $data["lenght"];
+        $album->poster = $data["poster"];
+        $album->type = $data["type"];
+        $album->description = $data["description"];
+        $album->save();
+
+        return redirect()->route('albums.show', $album);
     }
 
     /**
