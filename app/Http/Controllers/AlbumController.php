@@ -26,7 +26,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        return view('albums.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

@@ -19,3 +19,12 @@ use App\Models\Album;
 Route::get('/', [PageController::class, 'index'])->name('homepage');
 
 Route::resource('albums', AlbumController::class);
+
+//rotta per la lista della risorsa
+//Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+
+//rotta per il dettaglio della risorsa
+Route::post('albums', [AlbumController::class, 'store'])->name('albums.store');
+
+//rotta per il form di creazione della risorsa
+//Route::get('albums/create', [AlbumController::class, 'create']);
