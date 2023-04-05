@@ -37,7 +37,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validation([
+        $request->validate([
             'name' => 'required|string|unique:albums|max:20',
             'album_name' => 'required|string|unique:albums|max:15',
             'author' => 'required|string|max:20',
@@ -119,9 +119,9 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $album)
     {
-        $request->validation([
+        $request->validate([
             'name' => 'required|string|unique:albums|max:20',
             'album_name' => 'required|string|unique:albums|max:15',
             'author' => 'required|string|max:20',
@@ -168,8 +168,9 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Album $album)
     {
-        //
+        $album->delete();
+        return redirect()->route('albums.index');
     }
 }

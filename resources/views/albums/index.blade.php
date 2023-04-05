@@ -29,15 +29,44 @@
             <td>{{ $album->type }}</td>
             <td>{{ $album->lenght }} min</td>
             <td><a class="text-warning" href="{{ route('albums.show', ['album' => $album]) }}">Dettaglio</a></td>
-            <td><a href="{{ route('albums.edit', ['album' => $album]) }}">Modifica</a></td>   
+            <td><a href="{{ route('albums.edit', ['album' => $album]) }}">Modifica</a></td>
+            
+            <form action="{{ route('albums.destroy', ['album' => $album]) }}" method="POST">
+              @method('delete')
+              @csrf
+
+              <td>
+                <button class="" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                  Elimina
+                </button>
+              </td>   
+            </form>
           </tr>   
         @endforeach
       </tbody>
     </table>
-      <div class="row">
-        <div class="col-4 mt-2">
-          <a type="button" class="btn btn-outline-light mb-3" href="{{ route('albums.create') }}">Aggiungi album</a>
+    <div class="row">
+      <div class="col-4 mt-2">
+        <a type="button" class="btn btn-outline-light mb-3" href="{{ route('albums.create') }}">Aggiungi album</a>
+      </div>
+    </div>
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" airia-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 @endsection
