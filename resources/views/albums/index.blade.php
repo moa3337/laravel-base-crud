@@ -31,16 +31,12 @@
             <td><a class="text-warning" href="{{ route('albums.show', ['album' => $album]) }}">Dettaglio</a></td>
             <td><a href="{{ route('albums.edit', ['album' => $album]) }}">Modifica</a></td>
             
-            <form action="{{ route('albums.destroy', ['album' => $album]) }}" method="POST">
-              @method('delete')
-              @csrf
-
-              <td>
-                <button class="" data-bs-toggle="modal" data-bs-target="#delete-modal">
-                  Elimina
-                </button>
-              </td>   
-            </form>
+            <td>
+              <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                Elimina
+              </button>
+            </td>   
+            
           </tr>   
         @endforeach
       </tbody>
@@ -51,19 +47,24 @@
       </div>
     </div>
 
-    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" airia-hidden="true">
+    <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Stai Eliminando Questo Elemento!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <p>Sei sicuro di volerlo fare?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+            <form action="{{ route('albums.destroy', ['album' => $album]) }}" method="POST">
+              @method('delete')
+              @csrf
+              <button type="submit" class="btn btn-danger">Elimina</button>
+
+            </form>
           </div>
         </div>
       </div>

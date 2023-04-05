@@ -119,7 +119,7 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $album)
+    public function update(Request $request, Album $album)
     {
         $request->validate([
             'name' => 'required|string|unique:albums|max:20',
